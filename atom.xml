@@ -4,7 +4,7 @@
   <subtitle><![CDATA[天逸的技术随笔]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://t.tiany.me/"/>
-  <updated>2015-12-13T11:50:04.048Z</updated>
+  <updated>2015-12-13T12:49:05.004Z</updated>
   <id>http://t.tiany.me/</id>
   
   <author>
@@ -19,7 +19,7 @@
     <link href="http://t.tiany.me/2015/12/08/hexo-config/"/>
     <id>http://t.tiany.me/2015/12/08/hexo-config/</id>
     <published>2015-12-08T13:34:25.000Z</published>
-    <updated>2015-12-13T11:50:04.048Z</updated>
+    <updated>2015-12-13T12:49:05.004Z</updated>
     <content type="html"><![CDATA[<p>想写技术博客的时间其实有很久了，但是一直都没有实施起来过，怎么说呢，拖延症确实还是太严重了，希望这次会是一个好的开始，目前的计划是每月保证一更，希望能坚持下来。</p>
 <p>把技术博客从wp迁移到github pages了，一个主要的原因是我开始喜欢上Markdown这样的写作方式了，另外也是想体验下github pages的博客功能。前期在搭建的技术选型中在jekyll和hexo中犹豫了好久，不过还是更喜欢hexo这个名字， 你看，hex是16进制，hexo和hero又只有一字之差，而且读着也蛮朗朗上口的，还有一个私心，是想在用hexo的过程中了解下node.js, 这么多好处就由不得我不去选hexo了啊……</p>
 <p>选好了最基础的框架之后，就开始动手了，这方面网上有很多教程，基本上随便找找就可以搞定了，我是参考这两篇完成的：</p>
@@ -37,7 +37,7 @@
 <ol>
 <li>不支持数学公式显示<ol>
 <li>网上搜索得到的方案是使用mathjax，在网上找了一段js代码研究jade的语法终于正确嵌入后，像<a href="http://hujiaweibujidao.github.io/blog/2014/04/15/flying-on-mac/" target="_blank" rel="external">这样</a>，发现在显示的时候末尾会有一个小竖线，如前面链接里面显示的，看着非常难受。</li>
-<li>为了解决小竖线的问题，看是看mathjax的<a href="">官网</a><a href="https://www.mathjax.org/)，发现虽然他们官网的例子里面是没有小竖线的，但是翻他们官网的页面源码，把mathjax的相关配置抄过来之后，发现在我的博客上显示还是有问题，遂放弃。" target="_blank" rel="external">https://www.mathjax.org/)，发现虽然他们官网的例子里面是没有小竖线的，但是翻他们官网的页面源码，把mathjax的相关配置抄过来之后，发现在我的博客上显示还是有问题，遂放弃。</a></li>
+<li>为了解决小竖线的问题，看是看mathjax的<a href="https://www.mathjax.org/" target="_blank" rel="external">官网</a>，发现虽然他们官网的例子里面是没有小竖线的，但是翻他们官网的页面源码，把mathjax的相关配置抄过来之后，发现在我的博客上显示还是有问题，遂放弃。</li>
 <li>后来想到在Cmd Markdown和StackEdit上面数学公式渲染后都是没有小竖线的，于是从Cmd Markdown的页面里面借鉴了相关mathjax的配置，问题解决，相关修改可以参考<a href="https://github.com/tiany/maupassant-hexo/commit/fd8319fbf9a5f0936ad3348132e41d5c2d5a8215" target="_blank" rel="external">这里</a></li>
 </ol>
 </li>
