@@ -80,7 +80,7 @@
     <link href="http://t.tiany.me/2015/12/08/hexo-config/"/>
     <id>http://t.tiany.me/2015/12/08/hexo-config/</id>
     <published>2015-12-08T13:34:25.000Z</published>
-    <updated>2015-12-20T16:24:20.237Z</updated>
+    <updated>2015-12-20T16:38:51.694Z</updated>
     <content type="html"><![CDATA[<p>想写技术博客的时间其实有很久了，但是一直都没有实施起来过，怎么说呢，拖延症确实还是太严重了，希望这次会是一个好的开始，目前的计划是每月保证一更，希望能坚持下来。</p>
 <p>把技术博客从wp迁移到github pages了，一个主要的原因是我开始喜欢上Markdown这样的写作方式了，另外也是想体验下github pages的博客功能。前期在搭建的技术选型中在jekyll和hexo中犹豫了好久，不过还是更喜欢hexo这个名字， 你看，hex是16进制，hexo和hero又只有一字之差，而且读着也蛮朗朗上口的，还有一个私心，是想在用hexo的过程中了解下node.js, 这么多好处就由不得我不去选hexo了啊……</p>
 <p>选好了最基础的框架之后，就开始动手了，这方面网上有很多教程，基本上随便找找就可以搞定了，我是参考这两篇完成的：</p>
@@ -125,7 +125,9 @@
 <p>把技术博客从wp迁移到github pages了，一个主要的原因是我开始喜欢上Markdown这样]]>
     </summary>
     
-      <category term="hexo mathjax" scheme="http://t.tiany.me/tags/hexo-mathjax/"/>
+      <category term="hexo" scheme="http://t.tiany.me/tags/hexo/"/>
+    
+      <category term="mathjax" scheme="http://t.tiany.me/tags/mathjax/"/>
     
       <category term="tech" scheme="http://t.tiany.me/categories/tech/"/>
     
