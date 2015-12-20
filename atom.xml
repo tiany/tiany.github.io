@@ -4,7 +4,7 @@
   <subtitle><![CDATA[天逸的技术随笔]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://t.tiany.me/"/>
-  <updated>2015-12-13T12:49:05.004Z</updated>
+  <updated>2015-12-20T16:23:18.521Z</updated>
   <id>http://t.tiany.me/</id>
   
   <author>
@@ -15,11 +15,72 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title><![CDATA[Vim踩坑一例]]></title>
+    <link href="http://t.tiany.me/2015/12/20/vim-trap/"/>
+    <id>http://t.tiany.me/2015/12/20/vim-trap/</id>
+    <published>2015-12-20T15:38:41.000Z</published>
+    <updated>2015-12-20T16:23:18.521Z</updated>
+    <content type="html"><![CDATA[<p>从大学开始使用Vim到现在算起来也将近10年了，10年的使用过程里面，除了初期的学习成本之外，vim基本上没有给我造成过大的麻烦，直到最近的一次。</p>
+<p>事情是这样的，前一段时间我受一些文章的影响vim下多文件的编辑从以前习惯的多tab方式切换到多buffer的模式了，此类的文章如：<a href="https://joshldavis.com/2014/04/05/vim-tab-madness-buffers-vs-tabs/" target="_blank" rel="external">Vim Tab Madness. Buffers vs Tabs</a>，当然，这并没有问题，因为对多文件的编辑使用buffer的形式本身就是Vim的设定。多buffer下切换buffer(我使用了minibufferexplorer插件)的时候是需要先写出下当前buffer的(<code>:w</code>),这点和在多tab编辑下的习惯不太一样，所以我在自己的本地环境也设置了<code>set hidden</code>, 这样就能避免切换到新的buffer的时候就必须写出当前buffer，然而比较作死的是，我有一部分代码是直接在服务器上写的，而在服务器的vimrc中我并没有设置<code>set hidden</code>，而且当时也并没有觉得会出什么大问题，指导有一天，我打算完成如下的一个任务：</p>
+<blockquote>
+<p>  从a文件中分离出来一部分代码到b文件中</p>
+</blockquote>
+<p>我当时的的操作流程如下：</p>
+<blockquote>
+<ol>
+<li>新建b文件</li>
+<li>vim同时打开a，b文件，用<code>shift v</code>选中a里需要的代码，按<code>d</code>删除（<strong>这里是犯的第一个错误</strong>），<code>:w</code> 保存文件</li>
+<li>跳转到b文件，这个时候出了一个小失误，我失手按了<code>yy</code>键，复制了某个空行（<strong>这里是第二个错误</strong>），发现在b里面无法粘贴原来的代码</li>
+<li>退回到a文件，企图用<code>u</code>撤销操作失败，<code>:undolist</code>输出为空…… 这个时候我意识到了问题的存在，保留进程未动，企图恢复文件</li>
+<li>企图通过复制.swp文件恢复，复制.swp文件到其他目录，然后建立同名文件，打开，按照提示选择恢复，发现已经是<code>:w</code>之后的文件了</li>
+<li>企图通过vim的自动备份文件来恢复，发现没有备份文件，虽然我以前很讨厌vim的备份文件，但是此刻我真的好希望有备份文件，我记得以前备份文件是需要手动关闭的，但是检查了下我的vimrc没发现关闭自动备份的地方，感觉像是某个版本后vim就默认关闭自动备份了,只打开了writebackup（<strong>这里是第三个错误</strong>）</li>
+<li>本来想在通过文件系统试下找回的，但是想想也就几百行代码，还是直接重写吧，于是作罢。</li>
+</ol>
+</blockquote>
+<p>这个过程的三个简单总结下：</p>
+<blockquote>
+<ol>
+<li>第一个错误，此处应该用复制，待粘贴好之后再执行delete</li>
+<li>第二个错误，使用的是默认寄存器时，一定要随时小心寄存器被覆盖</li>
+<li>第三个错误，备份任何时候都不是多余的。<br><strong>冗余不做，日子甭过，备份不做，十恶不赦</strong> &emsp;&emsp;&emsp; –摘自某Linux前辈签名</li>
+</ol>
+</blockquote>
+<p>问题发生了，但是我坚信vim一定有版本解决这个问题的，于是开始请教了一堆人（这里感叹下，vim的freenode irc真的好冷清），并做了各种尝试，最终结论如下，与君共飨：</p>
+<ol>
+<li><p>首先是造成这个问题的原因</p>
+<blockquote>
+<p>  When unloading a buffer Vim normally destroys the tree of undos created for that buffer.</p>
+</blockquote>
+<p> 以上文字来源于<code>:help persist-undo</code>，(多谢 <a href="http://lilydjwg.is-programmer.com/" target="_blank" rel="external">百合喵</a>), 也就是默认的buffer设置下，<code>:w</code>然后切换到其他buffer的时候，当前buffer的<code>undo tree</code>就会被销毁了，这也是造成这次事故的根本原因。</p>
+</li>
+<li><p>解决方案，也是最简单的，设置<code>set hidden</code>， 这个可以保证你切换到其他buffer的时候当前的buffer只是hidden而不是unload，所以undo tree就不会被销毁了，但是使用这个选项的时候一定要特别小心地使用<code>:q!</code> <code>:qall!</code> 这样的命令，否则容易丢文件</p>
+</li>
+<li><p>设置persist-undo，详细的设置见<code>:help persist-undo</code>, 推荐搭配 <a href="https://github.com/mbbill/undotree" target="_blank" rel="external">undo-tree</a> 使用, 参考设置</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">nnoremap &lt;<span class="constant">F5</span>&gt; <span class="symbol">:UndotreeToggle&lt;cr&gt;</span></span><br><span class="line"> <span class="keyword">if</span> has(<span class="string">"persistent_undo"</span>)</span><br><span class="line">     set undodir=~<span class="regexp">/.undodir/</span></span><br><span class="line">     set undofile</span><br><span class="line"> endif</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>设置backup，详细设置可以看 <code>:help backup</code>, 参考设置：</p>
+ <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">set</span> backupdir=~/.vim_backdir/</span><br><span class="line"> <span class="keyword">set</span> <span class="keyword">backup</span></span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>如上配置之后基本上就不用担心vim丢文件了，当然，配合上好用的版本控制工具，效果就更好了。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>从大学开始使用Vim到现在算起来也将近10年了，10年的使用过程里面，除了初期的学习成本之外，vim基本上没有给我造成过大的麻烦，直到最近的一次。</p>
+<p>事情是这样的，前一段时间我受一些文章的影响vim下多文件的编辑从以前习惯的多tab方式切换到多buffer的模式]]>
+    </summary>
+    
+      <category term="vim" scheme="http://t.tiany.me/tags/vim/"/>
+    
+      <category term="tech" scheme="http://t.tiany.me/categories/tech/"/>
+    
+  </entry>
+  
+  <entry>
     <title><![CDATA[hexo-config]]></title>
     <link href="http://t.tiany.me/2015/12/08/hexo-config/"/>
     <id>http://t.tiany.me/2015/12/08/hexo-config/</id>
     <published>2015-12-08T13:34:25.000Z</published>
-    <updated>2015-12-13T12:49:05.004Z</updated>
+    <updated>2015-12-20T16:24:20.237Z</updated>
     <content type="html"><![CDATA[<p>想写技术博客的时间其实有很久了，但是一直都没有实施起来过，怎么说呢，拖延症确实还是太严重了，希望这次会是一个好的开始，目前的计划是每月保证一更，希望能坚持下来。</p>
 <p>把技术博客从wp迁移到github pages了，一个主要的原因是我开始喜欢上Markdown这样的写作方式了，另外也是想体验下github pages的博客功能。前期在搭建的技术选型中在jekyll和hexo中犹豫了好久，不过还是更喜欢hexo这个名字， 你看，hex是16进制，hexo和hero又只有一字之差，而且读着也蛮朗朗上口的，还有一个私心，是想在用hexo的过程中了解下node.js, 这么多好处就由不得我不去选hexo了啊……</p>
 <p>选好了最基础的框架之后，就开始动手了，这方面网上有很多教程，基本上随便找找就可以搞定了，我是参考这两篇完成的：</p>
@@ -65,6 +126,8 @@
     </summary>
     
       <category term="hexo mathjax" scheme="http://t.tiany.me/tags/hexo-mathjax/"/>
+    
+      <category term="tech" scheme="http://t.tiany.me/categories/tech/"/>
     
   </entry>
   
