@@ -4,7 +4,7 @@
   <subtitle><![CDATA[天逸的技术随笔]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://t.tiany.me/"/>
-  <updated>2015-12-20T16:23:18.521Z</updated>
+  <updated>2016-02-28T17:10:42.638Z</updated>
   <id>http://t.tiany.me/</id>
   
   <author>
@@ -13,6 +13,53 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[RESTful API 与 Tastypie]]></title>
+    <link href="http://t.tiany.me/2016/02/29/restful-api-and-tastypie/"/>
+    <id>http://t.tiany.me/2016/02/29/restful-api-and-tastypie/</id>
+    <published>2016-02-28T16:08:38.000Z</published>
+    <updated>2016-02-28T17:10:42.638Z</updated>
+    <content type="html"><![CDATA[<p>RESTful API是一个基于HTTP定义的通用接口，可以让后台比较容易地数据暴露给前台使用，实在是在现在这个多前台并行开发后端往往支持不力的情况下后端<del>偷懒的绝佳法门</del>统一接口的一个非常好的方式。</p>
+<p>RESTful API在不同的语言和框架下都有这自己不同的实现，由于我开发的时候使用了Python + Django的组合，而在实现RESTful API的时候为了方便起见，我使用了自己之前稍微有过接触的Tastypie，其实在Tastypie之后出现了很多比较优秀的RESTful api方案，诸如：<a href="http://www.django-rest-framework.org/" target="_blank" rel="external">django-rest-framework</a> 此处不展开。</p>
+<p>所有的RESTful API由于涉及到前后端的数据交互，所以一定要指定一个数据格式，这个格式目前比较主流的就是json了，而TastyPie相对于其他的实现比较好的一点就是这个从后端数据到json的序列化过程可以自动生成，不需要自己去写。</p>
+<p>RESTful API基本可以分为以下几个部分：</p>
+<ol>
+<li><strong>元</strong><br> 这个部分一般用于查询接口说明，可以从中获取到服务提供的具体接口和调用形式，使用HTTP的GET/OPTION方法获取。</li>
+<li><strong>增</strong><br> 一般使用HTTP的POST方法完成，用于向数据源增加数据。</li>
+<li><strong>删</strong><br> 一般使用HTTP的DELETE方法完成，用于删除已经存在的数据。</li>
+<li><strong>查</strong><br> 一般使用HTTP的GET方法获取，用于获取数据的具体内容。</li>
+<li><strong>改</strong><br> 一般使用HTTP的PUT/PATCH方法完成，用于修改已经存在的数据。</li>
+</ol>
+<p>用于前端交互一般都是通过js完成的，下面给出一段通过js访问相关接口的示例如下：</p>
+<p><strong>POST</strong><br>to get the new created object resource_uri, you should specify the CORS_EXPOSE_HEADERS = (‘Location’,) in django-cors-header if this is a cors request.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">$.ajax(&#123;</span><br><span class="line">  url: url,</span><br><span class="line">  data: <span class="built_in">JSON</span>.stringify(&#123;<span class="string">'address'</span>:<span class="string">'TEST'</span>, <span class="string">'name'</span>:<span class="string">'TEST'</span>&#125;),</span><br><span class="line">  method: <span class="string">'POST'</span>,</span><br><span class="line">  dataType: <span class="string">'json'</span>,</span><br><span class="line">  contentType: <span class="string">'application/json'</span>,</span><br><span class="line">  complete: <span class="function"><span class="keyword">function</span> (<span class="params">xhr, textStatus</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"complete"</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(textStatus);</span><br><span class="line">    <span class="built_in">console</span>.log(xhr.status);</span><br><span class="line">    <span class="built_in">console</span>.log(xhr.getResponseHeader(<span class="string">'Location'</span>)); <span class="comment">//resource uri.</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p><strong>DELETE</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$.ajax(&#123;</span><br><span class="line">  url: url,</span><br><span class="line">  method: <span class="string">'DELETE'</span>,</span><br><span class="line">  dataType: <span class="string">'json'</span>,</span><br><span class="line">  contentType: <span class="string">'application/json'</span>,</span><br><span class="line">  complete: <span class="function"><span class="keyword">function</span> (<span class="params">xhr, textStatus</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"complete"</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(textStatus);</span><br><span class="line">    <span class="built_in">console</span>.log(xhr.status);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p><strong>GET</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$.ajax(&#123;</span><br><span class="line">  url: url,</span><br><span class="line">  method: <span class="string">'GET'</span>,</span><br><span class="line">  dataType: <span class="string">'json'</span>,</span><br><span class="line">  contentType: <span class="string">'application/json'</span>,</span><br><span class="line">  complete: <span class="function"><span class="keyword">function</span> (<span class="params">xhr, textStatus</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">JSON</span>.stringify(xhr.responseJSON));</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p><strong>PUT/PATCH</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$.ajax(&#123;</span><br><span class="line">  url: url,</span><br><span class="line">  method: <span class="string">'PATCH'</span>,</span><br><span class="line">  data: <span class="built_in">JSON</span>.stringify(&#123;<span class="string">'build_count'</span>:<span class="number">10</span>&#125;),</span><br><span class="line">  dataType: <span class="string">'json'</span>,</span><br><span class="line">  contentType: <span class="string">'application/json'</span>,</span><br><span class="line">  complete: <span class="function"><span class="keyword">function</span> (<span class="params">xhr, textStatus</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"complete"</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(textStatus);</span><br><span class="line">    <span class="built_in">console</span>.log(xhr.status);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>使用Tastypie构建的RESTful API需要注意以下点：</p>
+<ul>
+<li>Tastypie在上传文件方面目前没有比较官方的实现，目前网上给出的方案一般都是hack源码的，如果不想hack源码的话，可以考虑单独使用普通的API来实现，但是一致性会比较差，需要取舍。</li>
+<li>RESTful API如果是跨域调用的话，需要注意设置跨域请求的参数，可以考虑使用<a href="https://github.com/ottoyiu/django-cors-headers" target="_blank" rel="external">django-cors-headers</a></li>
+<li>使用RESTful API请务必注意安全，由于此API将后台的数据暴露了出去，所以对于调用方身份一定要做严格的校验，避免出现安全问题。</li>
+</ul>
+<p>关于RESTful API基本就是这些东西，详细的知识建议翻阅<a href="http://www.restapitutorial.com/" target="_blank" rel="external">官方文档</a>，Tastypie的<a href="https://django-tastypie.readthedocs.org/en/latest/" target="_blank" rel="external">官方文档</a>更要好好翻，我当时因为没有好好翻文档吃了很多亏，谨记，谨记。</p>
+<p><del>幸好这个月有29号，不然真的就要连续两个月断更了，打算三月份多写一篇来弥补下一月份缺的文章，暂定的两篇文章，一篇是django的简单开发总结，一篇应该会写一个游戏的求解程序，希望不会跳票。</del></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>RESTful API是一个基于HTTP定义的通用接口，可以让后台比较容易地数据暴露给前台使用，实在是在现在这个多前台并行开发后端往往支持不力的情况下后端<del>偷懒的绝佳法门</del>统一接口的一个非常好的方式。</p>
+<p>RESTful API在不同的语言和框架]]>
+    </summary>
+    
+      <category term="Python" scheme="http://t.tiany.me/tags/Python/"/>
+    
+      <category term="RESTful-api" scheme="http://t.tiany.me/tags/RESTful-api/"/>
+    
+      <category term="Tastypie" scheme="http://t.tiany.me/tags/Tastypie/"/>
+    
+      <category term="tech" scheme="http://t.tiany.me/categories/tech/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[Vim踩坑一例]]></title>
