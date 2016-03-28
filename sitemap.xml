@@ -2,6 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://t.tiany.me/2016/03/29/django-many-to-many-migrate/</loc>
+    <lastmod>2016-03-28T18:02:32.196Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://t.tiany.me/about/index.html</loc>
     <lastmod>2016-02-28T17:20:31.770Z</lastmod>
   </url>
