@@ -2,6 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://t.tiany.me/2016/04/30/django-static-files/</loc>
+    <lastmod>2016-04-30T13:41:48.252Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://t.tiany.me/2016/03/29/django-many-to-many-migrate/</loc>
     <lastmod>2016-03-28T18:02:32.196Z</lastmod>
   </url>
