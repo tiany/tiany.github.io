@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://t.tiany.me/"/>
-  <updated>2016-05-16T13:55:16.233Z</updated>
+  <updated>2016-05-16T14:04:39.384Z</updated>
   <id>http://t.tiany.me/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://t.tiany.me/2016/05/15/rwd/"/>
     <id>http://t.tiany.me/2016/05/15/rwd/</id>
     <published>2016-05-15T15:42:00.000Z</published>
-    <updated>2016-05-16T13:55:16.233Z</updated>
+    <updated>2016-05-16T14:04:39.384Z</updated>
     
     <content type="html">&lt;p&gt;最近看了一些RWD的东西，本月就偷个懒，用这篇整理的RWD的东西来发一篇blog吧，总算不用等到月末再发了, 由于内容主要是看到的一些东西一些摘要，所以上下文并不是很丰富，权做纪念吧。:-)&lt;/p&gt;
 &lt;p&gt;响应式布局是为了让一套布局方案能够适应多种多样的显示需求而出现的，解决了传统方案下需要针对不同的设备而专门撰写不同的站点的问题。&lt;/p&gt;
