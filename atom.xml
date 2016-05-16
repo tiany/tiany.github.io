@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://t.tiany.me/"/>
-  <updated>2016-05-16T14:04:39.384Z</updated>
+  <updated>2016-05-16T14:13:24.461Z</updated>
   <id>http://t.tiany.me/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://t.tiany.me/2016/05/15/rwd/"/>
     <id>http://t.tiany.me/2016/05/15/rwd/</id>
     <published>2016-05-15T15:42:00.000Z</published>
-    <updated>2016-05-16T14:04:39.384Z</updated>
+    <updated>2016-05-16T14:13:24.461Z</updated>
     
     <content type="html">&lt;p&gt;最近看了一些RWD的东西，本月就偷个懒，用这篇整理的RWD的东西来发一篇blog吧，总算不用等到月末再发了, 由于内容主要是看到的一些东西一些摘要，所以上下文并不是很丰富，权做纪念吧。:-)&lt;/p&gt;
 &lt;p&gt;响应式布局是为了让一套布局方案能够适应多种多样的显示需求而出现的，解决了传统方案下需要针对不同的设备而专门撰写不同的站点的问题。&lt;/p&gt;
@@ -32,9 +32,6 @@
 &lt;p&gt;基本上主流的浏览器都支持，对于IE &amp;lt; IE9的可是使用如下的js来解决:&lt;/p&gt;
 &lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;!--[&lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; lt IE &lt;span class=&quot;number&quot;&gt;9&lt;/span&gt;]&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;xml&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;script&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;src&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;undefined&quot;&gt;&lt;/span&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;script&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;![endif]--&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;　　&lt;/p&gt;
-&lt;ul&gt;
 &lt;li&gt;&lt;p&gt;fluid layout&lt;br&gt;流式布局主要基于css的float属性来实现，主要的设计形式如下：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Mostly fluid&lt;br&gt;&lt;img src=&quot;http://ww4.sinaimg.cn/large/4d1782b1gw1f3g2w0qdbej20dw0a3wem.jpg&quot; alt=&quot;&quot;&gt;&lt;br&gt;&lt;a href=&quot;https://developers.google.com/web/fundamentals/design-and-ui/responsive/patterns/mostly-fluid?hl=en&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;示例代码&lt;/a&gt;&lt;/li&gt;
