@@ -6,7 +6,8 @@ install:
   - npm install
 
 
-#before_script:
+before_script:
+  - git checkout origin/source
  # - npm install -g gulp
 
 script:
