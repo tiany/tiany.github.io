@@ -1,4 +1,4 @@
- title: Django 中 many-to-many 数据库关系的 migrate 操作
+title: Django中many-to-many数据库关系的migrate操作
 date: 2016-3-29 01:49:38
 category: tech
 tags: [Django, many-to-many, migrate]

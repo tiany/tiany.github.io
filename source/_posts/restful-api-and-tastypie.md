@@ -1,4 +1,4 @@
-﻿ title: RESTful API 与 Tastypie
+title: RESTfulAPI与Tastypie
 date: 2016-2-29 00:08:38
 category: tech
 tags: [RESTful-api, Tastypie, Python]

@@ -43,7 +43,7 @@ tags: [frontend, rwd]
     [示例代码](https://developers.google.com/web/fundamentals/design-and-ui/responsive/patterns/tiny-tweaks?hl=en)
   - Off canvas
     ![Off canvas](http://ww2.sinaimg.cn/large/4d1782b1gw1f3g392bhwmj20dw081wem.jpg)
-    [示例代码](https://developers.google.com/web/fundamentals/design-and-ui/responsive/patterns/off-canvas?hl=en) 
+    [示例代码](https://developers.google.com/web/fundamentals/design-and-ui/responsive/patterns/off-canvas?hl=en)
 
 - media-query
   - css3 引入的新心功能，可以根据屏幕的宽度加载不同的 css 文件

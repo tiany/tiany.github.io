@@ -1,4 +1,4 @@
-﻿ title: Vim 踩坑一例
+title: Vim踩坑一例
 date: 2015-12-20 23:38:41
 category: tech
 tags: vim
