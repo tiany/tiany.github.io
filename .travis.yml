@@ -3,7 +3,7 @@ node_js: stable
 
 # S: Build Lifecycle
 install:
-  - npm install
+  - LIBSASS_EXT="no" npm install
 
 
 before_script:
