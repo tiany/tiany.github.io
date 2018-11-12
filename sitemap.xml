@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+  <url>
+    <loc>http://t.tiany.me/2016/04/30/django-static-files/</loc>
+    
+    <lastmod>2018-11-12T12:34:29.549Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://t.tiany.me/2015/12/08/hexo-config/</loc>
+    
+    <lastmod>2018-11-12T12:34:29.549Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://t.tiany.me/2016/02/29/restful-api-and-tastypie/</loc>
+    
+    <lastmod>2018-11-12T12:34:29.549Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://t.tiany.me/2016/05/15/rwd/</loc>
+    
+    <lastmod>2018-11-12T12:34:29.549Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://t.tiany.me/2015/12/20/vim-trap/</loc>
+    
+    <lastmod>2018-11-12T12:34:29.549Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://t.tiany.me/2016/03/29/django-many-to-many-migrate/</loc>
+    
+    <lastmod>2018-11-12T12:34:29.549Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://t.tiany.me/about/index.html</loc>
+    
+    <lastmod>2018-11-12T12:34:29.549Z</lastmod>
+    
+  </url>
+  
+</urlset>
